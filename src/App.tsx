@@ -1,14 +1,17 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import Navbar from "./components/navbar/Navbar";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme/theme";
 function App() {
-
   return (
     <>
-      hello world
+      <ThemeProvider theme={theme}>
+        <Navbar />
+      </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
