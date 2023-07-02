@@ -1,6 +1,8 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  spacing: 8, // Default spacing value
+
   palette: {
     primary: {
       main: "#111827", // dark color
@@ -10,7 +12,6 @@ const theme = createTheme({
       dark: "#000000",  // black color
       light: "#ffffff", // white color
       contrastText: "#94a2af", // dark gray 
-
     },
     error: {
       main: "#bc3631", // error color
@@ -23,8 +24,9 @@ const theme = createTheme({
     },
     success: {
       main: "#5dc65f", // green color
-    }
+    },
   },
+
   typography: {
     h1: {
       fontSize: "3rem",
@@ -51,10 +53,11 @@ const theme = createTheme({
       fontWeight: 600, // Custom font weight for h6
     },
     body1: {
-      fontSize: "1rem",
+      fontSize: ".95rem",
       fontWeight: 400, // Custom font weight for body1
     },
   },
+
   breakpoints: {
     values: {
       xs: 0, // extra small devices (portrait phones)

@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import CustomButton from "../../theme/CustomButton";
 import Flex from "../../theme/Flex";
+import { Link } from 'react-router-dom';
 import { menu } from "../../data/Data";
 import { Box } from "@mui/material";
 export default function MenuItems() {
@@ -20,9 +21,10 @@ export default function MenuItems() {
       {menu.map((menu) => {
         return (
           <span key={menu.id} style={{marginInline:"10px"}}>
-            <CustomButton color="secondary" variant="text">
+            <CustomButton  color="secondary" variant="text">
               {menu.title}
             </CustomButton>
+            
           </span>
         );
       })}

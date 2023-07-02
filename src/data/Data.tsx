@@ -1,9 +1,9 @@
 // data.js
 export const menu = [
-  { id: '01', title: 'Home' },
-  { id: '02', title: 'Shop' },
-  { id: '03', title: 'About' },
-  { id: '04', title: 'Contact' },
+  { id: '01', title: 'Home', path: '/' },
+  { id: '02', title: 'Shop', path: '/shop' },
+  { id: '03', title: 'About', path: '/about' },
+  { id: '04', title: 'Contact', path: '/contact' },
 ];
 
 export const features = [
