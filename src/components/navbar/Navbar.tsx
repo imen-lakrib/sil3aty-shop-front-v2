@@ -8,6 +8,7 @@ import CustomIconButton from "../../theme/CustomIconButton";
 import Badge from "@mui/material/Badge";
 import Flex from "../../theme/Flex";
 import MobileMenu from "./MobileMenu";
+import Logo from "../../theme/Logo";
 const Navbar: React.FC = () => {
   const handleButtonClick = () => {
     // Handle button click event here
@@ -16,12 +17,15 @@ const Navbar: React.FC = () => {
   return (
     <Flex justifyContent="space-around" alignItems="center">
       <MobileMenu />
-
-      <img src="/logo.png" alt="logo" />
+      <Logo/>
       <MenuItems />
 
       <Flex>
-        <Box sx={{ display: { xs: "none", sm:"block", md:"block", lg:"block" } }}>
+        <Box
+          sx={{
+            display: { xs: "none", sm: "block", md: "block", lg: "block" },
+          }}
+        >
           <CustomIconButton onClick={handleButtonClick} icon={<SearchIcon />} />
         </Box>
         <CustomIconButton

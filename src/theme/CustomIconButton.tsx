@@ -3,13 +3,15 @@ import IconButton from "@mui/material/IconButton";
 import { Icon } from "@mui/material";
 
 interface CustomIconButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   icon: React.ReactNode;
+  text?: string;
 }
 
 const CustomIconButton: React.FC<CustomIconButtonProps> = ({
   onClick,
   icon,
+  text
 }) => {
   return (
     <IconButton
@@ -21,7 +23,7 @@ const CustomIconButton: React.FC<CustomIconButtonProps> = ({
       }}
       onClick={onClick}
     >
-      {icon}
+      {icon} {text}
     </IconButton>
   );
 };

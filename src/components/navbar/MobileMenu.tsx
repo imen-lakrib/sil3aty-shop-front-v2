@@ -15,6 +15,8 @@ import Flex from "../../theme/Flex";
 import SearchBox from "./SearchBox";
 import MenuItems from "./MenuItems";
 import CustomButton from "../../theme/CustomButton";
+import { Link } from "react-router-dom";
+import Logo from "../../theme/Logo";
 
 const MobileMenu = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -59,8 +61,7 @@ const MobileMenu = () => {
               icon={<CloseIcon />}
             />
           </Box>
-          <img src="/logo.png" alt="logo" />
-
+<Logo/>
           <Typography
             sx={{ padding: "10px" }}
             color="secondary.main"
@@ -69,7 +70,7 @@ const MobileMenu = () => {
             Discover the most outstanding articles on all topics of life. Write
             your stories and share them
           </Typography>
-          <Box sx={{margin:"20px 0"}}>
+          <Box sx={{ margin: "20px 0" }}>
             <Flex justifyContent="space-evenly" alignItems="center">
               <FacebookIcon style={{ color: "#3b5998" }} />
               <TwitterIcon style={{ color: "#1da1f2" }} />
@@ -78,7 +79,9 @@ const MobileMenu = () => {
             </Flex>
           </Box>
           <SearchBox />
-          <Divider sx={{ backgroundColor: "secondary.light", margin:"20px 0" }} />
+          <Divider
+            sx={{ backgroundColor: "secondary.light", margin: "20px 0" }}
+          />
 
           <MenuItems />
 
@@ -86,9 +89,11 @@ const MobileMenu = () => {
             {menu.map((menu) => {
               return (
                 <div key={menu.id} style={{ margin: "20px 0" }}>
-                  <CustomButton color="secondary" variant="text">
-                    {menu.title}
-                  </CustomButton>
+                  <Link to={menu.path} style={{ textDecoration: "none" }} onClick={handleCloseDrawer}>
+                    <CustomButton color="secondary" variant="text" >
+                      {menu.title}
+                    </CustomButton>
+                  </Link>
                 </div>
               );
             })}

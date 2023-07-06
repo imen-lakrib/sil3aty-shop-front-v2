@@ -17,17 +17,17 @@ export default function MenuItems() {
   };
 
   return (
-    <Box sx={{display: {xs:"none", sm:"none",md:"none", lg:"block"}}}>
-      {menu.map((menu) => {
-        return (
-          <span key={menu.id} style={{marginInline:"10px"}}>
-            <CustomButton  color="secondary" variant="text">
-              {menu.title}
-            </CustomButton>
-            
-          </span>
-        );
-      })}
-    </Box>
+  
+    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
+    {menu.map((menuItem) => (
+      <span key={menuItem.id} style={{ marginInline: '10px' }}>
+        <Link to={menuItem.path} style={{ textDecoration: 'none' }}>
+          <CustomButton color="secondary" variant="text">
+            {menuItem.title}
+          </CustomButton>
+        </Link>
+      </span>
+    ))}
+  </Box>
   );
 }

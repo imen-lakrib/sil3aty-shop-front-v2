@@ -5,6 +5,12 @@ export const menu = [
   { id: '03', title: 'About', path: '/about' },
   { id: '04', title: 'Contact', path: '/contact' },
 ];
+export const heroSliders = [
+  { id: '01', title1: 'In this season, find the best 🔥',title2: 'Exclusive collection for everyone', button:'contact', link:'/contact', path: '/white.jpg' },
+  { id: '02', title1: 'In this season, find the best 🔥',title2: 'Exclusive collection for everyone', button:'contact', link:'/contact', path: '/yellow.jpg' },
+  { id: '03', title1: 'In this season, find the best 🔥',title2: 'Exclusive collection for everyone', button:'contact', link:'/contact', path: '/red.jpg' },
+  { id: '04', title1: 'In this season, find the best 🔥',title2: 'Exclusive collection for everyone', button:'contact', link:'/contact', path: '/blue.jpg' },
+];
 
 export const features = [
     { id: '01', icon: '/hand.png', title: 'Online consultations' },
