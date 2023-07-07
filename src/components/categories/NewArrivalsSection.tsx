@@ -25,11 +25,11 @@ const NewArrivalsSection = () => {
         <CustomTitle title1="New Arrivals." title2="REY backpacks & bags" />
       </Flex>
       <CartStyle1 />
-      <Carousel>
+      {/* <Carousel>
         {categories.map((category) => (
           <CartStyle2 key={category.id} data={category} />
         ))}
-      </Carousel>
+      </Carousel> */}
     </Box>
   );
 };
