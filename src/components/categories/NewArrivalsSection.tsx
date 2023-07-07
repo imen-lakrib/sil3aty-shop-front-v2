@@ -5,7 +5,7 @@ import Arrows from "../../theme/Arrows";
 import Carousel from "../../theme/slider/Carousel";
 import CartStyle2 from "../../theme/CartStyle2";
 import { Box, Container } from "@mui/material";
-import Carouseltest from "./Carouseltest";
+import CartStyle1 from "../../theme/CartStyle1";
 
 const categories = [
   { id: "01", name: "cat 1", image: "/1.png" },
@@ -13,18 +13,18 @@ const categories = [
   { id: "04", name: "cat 4", image: "/4.png" },
   { id: "05", name: "cat 5", image: "/5.png" },
 ];
-const CategoriesSection = () => {
+const NewArrivalsSection = () => {
   return (
-    <Box sx={{ padding: {xs:"5px", sm:"10px", md:"30px", lg:"50px"}, margin: {xs:"5px", sm:"10px 5px", md:"30px 5px", lg:"50px 5px"} }}>
+    <Box
+      sx={{
+        padding: { xs: "5px", sm: "10px", md: "30px", lg: "50px" },
+        margin: { xs: "5px", sm: "10px 5px", md: "30px 5px", lg: "50px 5px" },
+      }}
+    >
       <Flex justifyContent="space-between" alignItems="center">
-        <CustomTitle
-          title1="Discover more."
-          title2="Good things are waiting for"
-        />
+        <CustomTitle title1="New Arrivals." title2="REY backpacks & bags" />
       </Flex>
-
-      <Carouseltest/>
-
+      <CartStyle1 />
       <Carousel>
         {categories.map((category) => (
           <CartStyle2 key={category.id} data={category} />
@@ -34,4 +34,4 @@ const CategoriesSection = () => {
   );
 };
 
-export default CategoriesSection;
+export default NewArrivalsSection;
