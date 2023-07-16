@@ -19,6 +19,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import Layout from "./utils/Lyouat";
+import MyAccount from "./pages/MyAccount";
+import { AuthClient } from "./utils/Authentication";
+import AccountInfo from "./pages/clientDashboard/AccountInfo";
+import ChangePassword from "./pages/clientDashboard/ChangePassword";
+import MyOrders from "./pages/clientDashboard/MyOrders";
+import TrackMyOrder from "./pages/clientDashboard/TrackMyOrder";
+import WishList from "./pages/clientDashboard/WishList";
 
 function App() {
   const [isLoadingProduct, setIsLoadingProduct] = useState(false);
@@ -47,7 +54,6 @@ function App() {
     getData();
   }, [dispatch]);
 
-
   return (
     <>
       <BrowserRouter>
@@ -63,6 +69,22 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/product-details/:id" element={<SingleProduct />} />
+
+              {/* client */}
+              <Route
+                path="/my-account/*"
+                element={
+                  <AuthClient>
+                    <MyAccount />
+                  </AuthClient>
+                }
+              >
+                <Route path="account-info" element={<AccountInfo />} />
+                <Route path="wishlist" element={<WishList />} />
+                <Route path="my-orders" element={<MyOrders />} />
+                <Route path="change-pw" element={<ChangePassword />} />
+                <Route path="track-my-order" element={<TrackMyOrder />} />
+              </Route>
             </Routes>
           </Layout>
         </ThemeProvider>
