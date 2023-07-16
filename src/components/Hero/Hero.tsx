@@ -38,19 +38,20 @@ const Hero = () => {
                   justifyContent: "center",
                   textAlign: "center",
                   color: "#fff",
+                  padding:"0 50px"
                 }}
               >
                 <Box sx={{ maxWidth: "700px", margin: "0", textAlign: "left" }}>
                   <Typography
                     variant="h5"
                     component="h5"
-                    sx={{ marginBottom: "1rem" }}
+                    sx={{ marginBottom: "1rem",fontSize:{xs:"15px", sm:"20px", md:"25px", lg:"25px"} }}
                   >
                     {heroSlider.title1}
                   </Typography>
                   <Typography
                     variant="h1"
-                    sx={{ marginBottom: "1rem" }}
+                    sx={{ marginBottom: "1rem" , fontSize:{xs:"30px", sm:"50px", md:"50px", lg:"50px"}}}
                   >
                     {heroSlider.title2}
                   </Typography>

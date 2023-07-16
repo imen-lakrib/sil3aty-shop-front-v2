@@ -39,12 +39,13 @@ const MobileMenu = () => {
     <Box
       sx={{ display: { xs: "block", sm: "block", md: "block", lg: "none" } }}
     >
-      <CustomIconButton onClick={handleButtonClick} icon={<MenuIcon />} />
+      <CustomIconButton  color="secondary" onClick={handleButtonClick} icon={<MenuIcon />} />
       <SwipeableDrawer
         anchor="left"
         open={isDrawerOpen}
         onClose={handleCloseDrawer}
         onOpen={handleButtonClick}
+        sx={{zIndex:999999}}
       >
         <Box
           sx={{
@@ -57,11 +58,12 @@ const MobileMenu = () => {
         >
           <Box sx={{ position: "absolute", top: 5, right: 5 }}>
             <CustomIconButton
+            color="secondary" 
               onClick={handleCloseDrawer}
               icon={<CloseIcon />}
             />
           </Box>
-<Logo/>
+          <Logo />
           <Typography
             sx={{ padding: "10px" }}
             color="secondary.main"
@@ -89,8 +91,12 @@ const MobileMenu = () => {
             {menu.map((menu) => {
               return (
                 <div key={menu.id} style={{ margin: "20px 0" }}>
-                  <Link to={menu.path} style={{ textDecoration: "none" }} onClick={handleCloseDrawer}>
-                    <CustomButton color="secondary" variant="text" >
+                  <Link
+                    to={menu.path}
+                    style={{ textDecoration: "none" }}
+                    onClick={handleCloseDrawer}
+                  >
+                    <CustomButton color="secondary" variant="text">
                       {menu.title}
                     </CustomButton>
                   </Link>
