@@ -132,8 +132,7 @@ const AccountInfo = () => {
           autoComplete="off"
           onSubmit={handleSubmit}
         >
-
-<Box sx={{ textAlign: "left", margin: "10px 0" }}>
+          <Box sx={{ textAlign: "left", margin: "10px 0" }}>
             <Typography>Full Name</Typography>
             <Input
               name="username"
@@ -191,7 +190,7 @@ const AccountInfo = () => {
               </InputAdornment>
             }
           />
-          
+
           <Box sx={{ textAlign: "left", margin: "10px 0" }}>
             <Typography>Email</Typography>
             <Input

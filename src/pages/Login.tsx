@@ -99,7 +99,7 @@ const Login = () => {
             console.log("is logged in after login", isLoggedIn);
           } else if (role === "Client") {
             toast.success("Welcome to your account");
-            navigate("/my-account");
+            navigate("/my-account/account-info");
             console.log("is logged in after login", isLoggedIn);
           } else {
             toast.error("You don't have access to this.");

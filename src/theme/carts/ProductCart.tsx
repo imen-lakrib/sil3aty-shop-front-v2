@@ -8,7 +8,7 @@ import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { useDispatch, useSelector } from "react-redux";
-import { selectWishlist } from "../../redux/slices/wishListSlice";
+import { ADD_TO_WISHLIST, selectWishlist } from "../../redux/slices/wishListSlice";
 import QuickView from "../models/QuickView";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -67,7 +67,7 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
 
   const [isLOading, setIsLoading] = useState(false);
   // add to cart :
-  const addToCart = async (data:any) => {
+  const addToCart = async (data: ProductDataProps["data"]) => {
     try {
       setIsLoading(true);
       const newItem = {
@@ -97,9 +97,62 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
     } catch (error) {
       // Handle error
       setIsLoading(false);
-      toast.error(data.message);
+      toast.error(data.description);
+
+    }
+  }
+
+  // add to wishlist
+  const wishListData = useSelector(selectWishlist)
+  console.log("wishListDatawishListDatawishListData",wishListData)
+
+  const addToWishLIst = async (data: ProductDataProps["data"]) => {
+    try {
+      setIsLoading(true);
+  
+      // Check if the product already exists in the wishlist
+      const productExists = wishListData.find((item) => item.productId === data._id);
+  
+      if (productExists) {
+        // If the product already exists, display a toast message and return early
+        toast.warning('Product already exists in the wishlist');
+        setIsLoading(false);
+        return;
+      }
+  
+      // If the product doesn't exist, add it to the wishlist
+      const newItem = {
+        productName: data.name,
+        quantity: 1,
+        productImage: data.images[0].url || 'https://www.google.com',
+        productPrice: data.price,
+        productId: data._id,
+      };
+  
+      // Make the API request if needed
+      const response = await axios.post(`${API_URL}cart/add`, newItem, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+  
+      if (response.data.success === true) {
+        // Dispatch the addToWishlist action with the new item
+        dispatch(ADD_TO_WISHLIST(response.data));
+        toast.success("Successfully added to the wishlist");
+      } else {
+        // Handle the response if needed (e.g., display an error message)
+        toast.error(response.data.message || "Failed to add to the wishlist");
+      }
+  
+      setIsLoading(false);
+    } catch (error) {
+      // Handle error
+      setIsLoading(false);
+      toast.error(error.message || "An error occurred while adding to the wishlist");
     }
   };
+
 
   return (
     <>
@@ -128,7 +181,8 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
         >
           <img
             style={{ width: "100%" }}
-            src={data.images[0].url || "https://www.google.com"}
+            src={data?.images?.[0]?.url || "https://www.google.com"}
+
             alt=""
           />
           <Box
@@ -144,6 +198,7 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
             <CustomIconButton
               color="secondary"
               fontSize="10px"
+              onClick={() => addToWishLIst(data)}
               icon={<FavoriteBorderOutlinedIcon sx={{ fontSize: "20px" }} />}
             />
           </Box>

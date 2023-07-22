@@ -1,13 +1,9 @@
 import React from "react";
 import {
-  CLEAR_CART,
-  GET_CART_DATA,
-  TOTAL_ITEMS_PRICE,
-  UPDATE_CART,
   selectCartItems,
   selectTotalItemsPrice,
 } from "../../redux/slices/cartSlice";
-import { selectEmail, selectIsLoggedIn, selectUsers } from "../../redux/slices/userSlice";
+import { selectEmail, selectIsLoggedIn } from "../../redux/slices/userSlice";
 import API_URL from "../../routes/Api";
 import { useState, useEffect } from "react";
 import { alpha } from "@mui/material/styles";
@@ -54,7 +50,7 @@ const UserPapover: React.FC<UserPopoverProps> = ({ openUser, setOpenUser }) => {
 
 
   const handleClose = () => {
-    setOpenUser(null);
+    setOpenUser(false);
   };
 
   
@@ -119,7 +115,11 @@ const UserPapover: React.FC<UserPopoverProps> = ({ openUser, setOpenUser }) => {
                 fontSize="15px"
                 color="secondary"
                 text="My Account"
-                onClick={() => navigate("/my-account")}
+                onClick={() => {
+                  navigate("/my-account/account-info")
+                  handleClose()
+
+                }}
                 icon={<Person2OutlinedIcon sx={{ fontSize: "20px" }} />}
               />
 
@@ -128,7 +128,7 @@ const UserPapover: React.FC<UserPopoverProps> = ({ openUser, setOpenUser }) => {
                 fontSize="15px"
                 color="secondary"
                 text="My Order"
-                onClick={() => navigate("/my-account")}
+                onClick={() => navigate("/my-account/my-orders")}
                 icon={
                   <PlaylistAddCheckCircleOutlinedIcon
                     sx={{ fontSize: "20px" }}
@@ -140,7 +140,7 @@ const UserPapover: React.FC<UserPopoverProps> = ({ openUser, setOpenUser }) => {
                 fontSize="15px"
                 color="secondary"
                 text="My Wishlist"
-                onClick={() => navigate("/my-account")}
+                onClick={() => navigate("/my-account/wishlist")}
                 icon={<FavoriteBorderOutlinedIcon sx={{ fontSize: "20px" }} />}
               />
             </Box>

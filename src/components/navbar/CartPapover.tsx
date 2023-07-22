@@ -72,7 +72,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ open, setOpen }) => {
   const ordernow = () => {
     console.log(isLoggedIn);
     if (isLoggedIn) {
-      navigate("/mydashboard/checkout");
+      navigate("/checkout");
     } else {
       toast.error("please login first");
       navigate("/");
@@ -202,7 +202,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ open, setOpen }) => {
         fullWidth
         maxWidth="sm"
         open={open}
-        onClose={handleClose}
+        onClick={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         sx={{ zIndex: 100000000000000 }}

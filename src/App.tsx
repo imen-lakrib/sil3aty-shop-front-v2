@@ -3,7 +3,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme/theme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Shop from "./pages/Shop";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { useEffect, useState } from "react";
@@ -26,6 +25,11 @@ import ChangePassword from "./pages/clientDashboard/ChangePassword";
 import MyOrders from "./pages/clientDashboard/MyOrders";
 import TrackMyOrder from "./pages/clientDashboard/TrackMyOrder";
 import WishList from "./pages/clientDashboard/WishList";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CheckOut from "./pages/clientDashboard/CheckOut";
+import Shop from "./pages/shopPage/Shop";
+
 
 function App() {
   const [isLoadingProduct, setIsLoadingProduct] = useState(false);
@@ -84,9 +88,15 @@ function App() {
                 <Route path="my-orders" element={<MyOrders />} />
                 <Route path="change-pw" element={<ChangePassword />} />
                 <Route path="track-my-order" element={<TrackMyOrder />} />
+
+              </Route>
+              <Route path="/checkout"  element={<AuthClient> <CheckOut /></AuthClient>}>
+
+
               </Route>
             </Routes>
           </Layout>
+          <ToastContainer />
         </ThemeProvider>
       </BrowserRouter>
     </>
