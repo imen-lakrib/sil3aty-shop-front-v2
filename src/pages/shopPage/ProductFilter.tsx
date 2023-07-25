@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FILTER_BY_BRAND, FILTER_BY_CATEGORY, FILTER_BY_PRICE } from '../../redux/slices/filterSlice'
 import { selectMaxPrice, selectMinPrice } from '../../redux/slices/productSlice'
+import CustomButton from '../../theme/CustomButton'
 
 const ProductFilter = ({ products }) => {
     // filter by category
@@ -16,7 +17,6 @@ const ProductFilter = ({ products }) => {
     const filterProducts = (cat) => {
         setCategory(cat)
         dispatch(FILTER_BY_CATEGORY({ products, category: cat }))
-
     }
 
     // filter by brand
@@ -24,7 +24,6 @@ const ProductFilter = ({ products }) => {
 
     useEffect(() => {
         dispatch(FILTER_BY_BRAND({ products, brand }))
-
     }, [dispatch, products, brand])
 
     // filter by price:
@@ -32,10 +31,8 @@ const ProductFilter = ({ products }) => {
     const maxPrice = useSelector(selectMaxPrice)
     const [price, setPrice] = useState(maxPrice)
 
-
     useEffect(() => {
         dispatch(FILTER_BY_PRICE({ products, price }))
-
     }, [dispatch, products, price])
 
     // clear all filters
@@ -46,44 +43,46 @@ const ProductFilter = ({ products }) => {
     }
 
     return (
-        <Card sx={{ p: 2 }} >
-            <FormLabel id="demo-radio-buttons-group-label">Products Filter</FormLabel>
-            {/* <Box py={2} >
-                <FormControl fullWidth>
-                    <FormLabel id="demo-radio-buttons-group-label">Brand:</FormLabel>
-
-                    <Select
-                        value={brand}
-                        label="sort"
-                        onChange={(e) => setBrand(e.target.value)}
-                    >
-                        <MenuItem value="All">All</MenuItem>
-                        <MenuItem value="Nike">Nike</MenuItem>
-                        <MenuItem value="Dz">DZ</MenuItem>
-                    </Select>
-                </FormControl>
-            </Box> */}
+        <Box sx={{ p: 2, color: "white" }} >
+            <FormLabel sx={{color:"secondary.contrastText", fontSize:"20px", fontWeight:600}}  id="demo-radio-buttons-group-label">Products Filter</FormLabel>
             <Box py={2} >
                 <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">Category:</FormLabel>
-                    {allCategories.map((cat, index) => {
-                        return (<Button color={cat === category ? "secondary" : "primary"} key={index}
+                    <FormLabel sx={{color:"secondary.contrastText", fontSize:"20px", fontWeight:600}} id="demo-radio-buttons-group-label">Category:</FormLabel>
+                    {allCategories.map((cat, index) => (
+                        <Button
+                            sx={{
+                                color: cat === category ? "#1953D1" : "white",
+                            }}
+                            key={index}
                             onClick={() => filterProducts(cat)}
                         >
                             {cat}
-                        </Button>)
-                    })}
-
-
+                        </Button>
+                    ))}
                 </FormControl>
             </Box>
             <Box p={2} >
-                <FormLabel id="demo-radio-buttons-group-label">Price:</FormLabel>
-
-                <Slider value={price} onChange={(e) => setPrice(e.target.value)} min={minPrice} max={maxPrice} aria-label="Default" valueLabelDisplay="auto" />
+                <FormLabel sx={{color:"secondary.contrastText", fontSize:"20px", fontWeight:600}}  id="demo-radio-buttons-group-label">Price:</FormLabel>
+                <Slider
+                    sx={{
+                        color: "white",
+                        "& .MuiSlider-thumb": {
+                            backgroundColor: "white",
+                        },
+                        "& .MuiSlider-valueLabel": {
+                            color: "white",
+                        },
+                    }}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    min={minPrice}
+                    max={maxPrice}
+                    aria-label="Default"
+                    valueLabelDisplay="auto"
+                />
             </Box>
-            <Button color='primary' onClick={clearFilters} >Clear Filter</Button>
-        </Card>
+            <CustomButton backgroundColor="#ffffff" color="primary" variant="text" fontSize="10px" onClick={clearFilters} >Clear Filter</CustomButton>
+        </Box>
     )
 }
 

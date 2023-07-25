@@ -1,33 +1,29 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import CustomButton from "../../theme/CustomButton";
-import Flex from "../../theme/Flex";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 import { menu } from "../../data/Data";
 import { Box } from "@mui/material";
+
 export default function MenuItems() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  
+
+  // Get the current pathname using the useLocation hook
+  const location = useLocation();
 
   return (
-  
-    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
-    {menu.map((menuItem) => (
-      <span key={menuItem.id} style={{ marginInline: '10px' }}>
-        <Link to={menuItem.path} style={{ textDecoration: 'none' }}>
-          <CustomButton color="secondary" variant="text">
-            {menuItem.title}
-          </CustomButton>
-        </Link>
-      </span>
-    ))}
-  </Box>
+    <Box sx={{ display: { xs: "none", sm: "none", md: "none", lg: "block" } }}>
+      {menu.map((menuItem) => (
+        <span key={menuItem.id} style={{ marginInline: "10px" }}>
+          <Link to={menuItem.path} style={{ textDecoration: "none" }}>
+            <CustomButton
+              color={menuItem.path === location.pathname ? "primary" : "secondary"} 
+              variant={menuItem.path === location.pathname ? "contained" : "text"} // Check if the current path matches the menu item path
+              backgroundColor= {menuItem.path === location.pathname ? `${'#ccd3d6'}80` : "transparent"} // Apply background color to the active item
+            >
+              {menuItem.title}
+            </CustomButton>
+          </Link>
+        </span>
+      ))}
+    </Box>
   );
 }

@@ -13,7 +13,6 @@ const Home = () => {
       <NewArrivalsSection />
       <Divider sx={{ backgroundColor: "secondary.contrastText" , margin:"80px 0"}} />
       <StepsSection/>
-      <Divider sx={{ backgroundColor: "secondary.contrastText", margin:"80px 0" }} />
 
 
     </div>

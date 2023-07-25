@@ -8,7 +8,6 @@ import {
   Box,
   Stack,
   IconButton,
-  Popover,
   Typography,
   Button,
   Divider,
@@ -17,8 +16,6 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Add, Delete, Remove } from "@mui/icons-material";
 import Flex from "../../theme/Flex";
 import {
   CLEAR_CART,
@@ -31,6 +28,7 @@ import {
 import { selectIsLoggedIn } from "../../redux/slices/userSlice";
 import API_URL from "../../routes/Api";
 import Loader from "../../utils/Loader/Loader";
+import { Add, Delete, Remove } from "@mui/icons-material";
 
 interface CartPopoverProps {
   open: any;

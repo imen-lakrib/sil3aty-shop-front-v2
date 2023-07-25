@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MenuItems from "./MenuItems";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -13,12 +13,20 @@ import CartPapover from "./CartPapover";
 import UserPapover from "./UserPapover";
 import { selectCartItems } from "../../redux/slices/cartSlice";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 
 const Navbar= () => {
+  const navigate= useNavigate()
   const handleButtonClick = () => {
     // Handle button click event here
+  };
+
+  const searchbtn = () => {
+    // Handle button click event here
+    navigate("/shop")
+
   };
   const [bgColor, setBgColor] = useState("transparent");
   const [divider, setDivider] = useState("0");
@@ -95,7 +103,7 @@ const Navbar= () => {
             >
               <CustomIconButton
                 color="secondary"
-                onClick={handleButtonClick}
+                onClick={searchbtn}
                 icon={<SearchIcon />}
               />
             </Box>

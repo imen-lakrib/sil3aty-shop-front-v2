@@ -15,6 +15,12 @@ import StarIcon from "@mui/icons-material/Star";
 import CircleIcon from "@mui/icons-material/Circle";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import CustomAccordion from "../CustomAccordion";
+import { useState } from "react";
+import axios from "axios";
+import API_URL from "../../routes/Api";
+import { toast } from "react-toastify";
+import { ADD_TO_CART } from "../../redux/slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 interface QuickViewProps {
   open: boolean;
@@ -44,7 +50,49 @@ interface QuickViewProps {
   };
 }
 
+
+
 const QuickView: React.FC<QuickViewProps> = ({ open, setOpen, data }) => {
+
+  const [isLOading, setIsLoading] = useState(false);
+  // add to cart :
+  const dispatch = useDispatch();
+
+  const addToCart = async (data: QuickViewProps["data"]) => {
+    try {
+      setIsLoading(true);
+      const newItem = {
+        productName: data.name,
+        quantity: 1,
+        productImage: data.images[0].url || "https://www.google.com",
+        productPrice: data.price,
+        productId: data._id,
+      };
+
+      // Make the API request if needed
+      const response = await axios.post(`${API_URL}cart/addtocart`, newItem, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (response.data.success == true) {
+        // Dispatch the addToCart action with the new item
+        dispatch(ADD_TO_CART(response.data.cart));
+        toast.success("successfully added to cart");
+        setIsLoading(false);
+      }
+      toast.error(response.data.message);
+      setIsLoading(false);
+
+      // Handle the response if needed
+    } catch (error) {
+      // Handle error
+      setIsLoading(false);
+      toast.error(data.description);
+    }
+  };
+
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -207,6 +255,7 @@ const QuickView: React.FC<QuickViewProps> = ({ open, setOpen, data }) => {
                     fontSize="10px"
                     color="secondary"
                     text="Add to bag"
+                    onClick={() => addToCart(data)}
                     icon={
                       <ShoppingBasketOutlinedIcon sx={{ fontSize: "20px" }} />
                     }

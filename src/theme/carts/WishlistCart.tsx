@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Typography,
+} from "@mui/material";
 import CustomIconButton from "../CustomIconButton";
 import { useDispatch } from "react-redux";
 import { ADD_TO_WISHLIST, STORE_WISHLIST_ITEMS } from "../../redux/slices/wishListSlice";
@@ -21,16 +29,8 @@ interface Product {
   __v: number;
 }
 
-const WishlistCart: React.FC<Product> = ({ data }) => {
-
-
-
-  const [open, setOpen] = useState(false);
-  const [openModele, setOpenModele] = useState(false);
-  const [isLoadingWishlist, setIsLoadingWishlist] = useState(false)
-
-
-
+const WishlistCart: React.FC<{ data: Product }> = ({ data }) => {
+  const [isLoadingWishlist, setIsLoadingWishlist] = useState(false);
 
   const navigate = useNavigate();
   const openProductDetails = (id: string) => {
@@ -70,6 +70,7 @@ const WishlistCart: React.FC<Product> = ({ data }) => {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
+      
       toast.error(error.message || "Failed to add to cart");
     }
   };
@@ -83,72 +84,56 @@ const WishlistCart: React.FC<Product> = ({ data }) => {
         },
       });
 
-      if (response.data.success == true) {
+      if (response.data.success === true) {
         setIsLoadingWishlist(false);
         dispatch(STORE_WISHLIST_ITEMS(response.data.wishlistData));
-
-
       } else {
         console.log("not found")
         setIsLoadingWishlist(false);
-
       }
-
-
     } catch (error) {
       setIsLoadingWishlist(false);
-      toast.error(error)
-
+      toast.error(error.message);
     }
   };
 
-
   //delete product form
-
   const [openDelete, setOpenDelete] = useState(false);
   const handleClickOpenDelete = () => {
-    setOpenDelete(true)
+    setOpenDelete(true);
   };
 
   const handleSubmitDelete = () => {
-    deleteData()
-    handleCloseDelete()
+    deleteData();
+    handleCloseDelete();
   };
 
   const handleCloseDelete = () => {
-    setOpenDelete(false)
+    setOpenDelete(false);
   };
 
   const deleteData = async () => {
     try {
       setIsLoadingWishlist(true);
 
-      const response = await axios.delete(`${API_URL}cart/remove/${data._id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-          }
+      const response = await axios.delete(`${API_URL}cart/remove/${data._id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         }
-      );
-      if (response.data.success == true) {
-        // dispatch(STORE_WISHLIST_ITEMS(response.data.wishlistData));
+      });
+
+      if (response.data.success === true) {
         fetchWishlistItems();
-
         console.log(response)
-        toast.warning(response.data.message)
+        toast.warning(response.data.message);
+        setIsLoadingWishlist(false);
+      } else {
+        console.log("not found");
         setIsLoadingWishlist(false);
       }
-      else {
-        console.log("not found")
-        setIsLoadingWishlist(false);
-      }
-
-
-
     } catch (error) {
       setIsLoadingWishlist(false);
       console.log(error);
-
     }
   };
 
@@ -188,10 +173,8 @@ const WishlistCart: React.FC<Product> = ({ data }) => {
               width: "100%",
             }}
           >
-
-
             <CustomIconButton
-            onClick={() => {handleClickOpenDelete()}}
+              onClick={() => handleClickOpenDelete()}
               color="secondary"
               fontSize="10px"
               icon={<DeleteIcon sx={{ fontSize: "20px" }} />}
@@ -212,14 +195,17 @@ const WishlistCart: React.FC<Product> = ({ data }) => {
               fontSize="10px"
               color="secondary"
               text="Add to bag"
-              onClick={() => addToCart()}
+              onClick={() => addToCart(data)}
               icon={<ShoppingBasketOutlinedIcon sx={{ fontSize: "20px" }} />}
             />
           </Box>
         </Box>
-        
-        <Box sx={{ textAlign: "center" , cursor: "pointer" }}  onClick={() => openProductDetails(data.productId)}>
-        <Typography
+
+        <Box
+          sx={{ textAlign: "center", cursor: "pointer" }}
+          onClick={() => openProductDetails(data.productId)}
+        >
+          <Typography
             variant="h3"
             sx={{ color: "secondary.light", fontSize: "18px" }}
           >
@@ -228,32 +214,30 @@ const WishlistCart: React.FC<Product> = ({ data }) => {
           <Typography sx={{ color: "success.main", fontWeight: 600 }}>
             ${data.productPrice}
           </Typography>
-         
         </Box>
       </Box>
 
-       {/* ***********************************delete product ********************************* */}
+      {/* ***********************************delete product ********************************* */}
 
-       <Dialog
+      <Dialog
         open={openDelete}
         onClose={handleCloseDelete}
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description">
+        aria-describedby="alert-dialog-description"
+      >
         <DialogTitle id="alert-dialog-title">
           {"Are you sure wanna delete?"}
         </DialogTitle>
-        <DialogContent >
-
+        <DialogContent>
           <Typography>"{data.productName}"</Typography>
-
           <DialogActions>
-            <Button onClick={handleCloseDelete} autoFocus>Cancel</Button>
+            <Button onClick={handleCloseDelete} autoFocus>
+              Cancel
+            </Button>
             <Button onClick={handleSubmitDelete}>Confirmer</Button>
           </DialogActions>
-
         </DialogContent>
       </Dialog>
-
     </>
   );
 };

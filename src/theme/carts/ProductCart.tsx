@@ -8,45 +8,49 @@ import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_TO_WISHLIST, selectWishlist } from "../../redux/slices/wishListSlice";
+import {
+  ADD_TO_WISHLIST,
+  selectWishlist,
+} from "../../redux/slices/wishListSlice";
 import QuickView from "../models/QuickView";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import API_URL from "../../routes/Api";
 import { ADD_TO_CART } from "../../redux/slices/cartSlice";
 import { toast } from "react-toastify";
-import { AnyAsyncThunk } from "@reduxjs/toolkit/dist/matchers";
+
+interface Product {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  discountPrice: number;
+  color: string;
+  size: string;
+  ratings: number;
+  images: { public_id: string; url: string; _id: string }[];
+  category: string;
+  stock: number;
+  numberOfReviews: number;
+  createdAt: string;
+  reviews: {
+    user: string;
+    rating: number;
+    comment: string;
+    time: string;
+    _id: string;
+  }[];
+  __v: number;
+}
 
 interface ProductDataProps {
-  data: {
-    _id: string;
-    name: string;
-    description: string;
-    price: number;
-    discountPrice: number;
-    color: string;
-    size: string;
-    ratings: number;
-    images: { public_id: string; url: string; _id: string }[];
-    category: string;
-    stock: number;
-    numberOfReviews: number;
-    createdAt: string;
-    reviews: {
-      user: string;
-      rating: number;
-      comment: string;
-      time: string;
-      _id: string;
-    }[];
-    __v: number;
-  };
+  data: Product;
 }
 
 const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
   // single product page:
   const navigate = useNavigate();
-  const openProductDetails = (data: any) => {
+  const openProductDetails = (data) => {
     navigate(`/product-details/${data._id}`);
   };
 
@@ -98,44 +102,45 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
       // Handle error
       setIsLoading(false);
       toast.error(data.description);
-
     }
-  }
+  };
 
   // add to wishlist
-  const wishListData = useSelector(selectWishlist)
-  console.log("wishListDatawishListDatawishListData",wishListData)
+  const wishListData = useSelector(selectWishlist);
+  console.log("wishListDatawishListDatawishListData", wishListData);
 
   const addToWishLIst = async (data: ProductDataProps["data"]) => {
     try {
       setIsLoading(true);
-  
+
       // Check if the product already exists in the wishlist
-      const productExists = wishListData.find((item) => item.productId === data._id);
-  
+      const productExists = wishListData.find(
+        (item) => item.productId === data._id
+      );
+
       if (productExists) {
         // If the product already exists, display a toast message and return early
-        toast.warning('Product already exists in the wishlist');
+        toast.warning("Product already exists in the wishlist");
         setIsLoading(false);
         return;
       }
-  
+
       // If the product doesn't exist, add it to the wishlist
       const newItem = {
         productName: data.name,
         quantity: 1,
-        productImage: data.images[0].url || 'https://www.google.com',
+        productImage: data.images[0].url || "https://www.google.com",
         productPrice: data.price,
         productId: data._id,
       };
-  
+
       // Make the API request if needed
       const response = await axios.post(`${API_URL}cart/add`, newItem, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-  
+
       if (response.data.success === true) {
         // Dispatch the addToWishlist action with the new item
         dispatch(ADD_TO_WISHLIST(response.data));
@@ -144,15 +149,16 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
         // Handle the response if needed (e.g., display an error message)
         toast.error(response.data.message || "Failed to add to the wishlist");
       }
-  
+
       setIsLoading(false);
     } catch (error) {
       // Handle error
       setIsLoading(false);
-      toast.error(error.message || "An error occurred while adding to the wishlist");
+      toast.error(
+        error.message || "An error occurred while adding to the wishlist"
+      );
     }
   };
-
 
   return (
     <>
@@ -182,7 +188,6 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
           <img
             style={{ width: "100%" }}
             src={data?.images?.[0]?.url || "https://www.google.com"}
-
             alt=""
           />
           <Box

@@ -40,7 +40,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import API_URL from "../routes/Api";
 import Flex from "../theme/Flex";
-import { selectCartItems } from "../redux/slices/cartSlice";
+import { ADD_TO_CART, selectCartItems } from "../redux/slices/cartSlice";
 import CustomIconButton from "../theme/CustomIconButton";
 import CustomAccordion from "../theme/CustomAccordion";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -130,6 +130,41 @@ const SingleProduct = () => {
 
   // add to cart :
   const [isLOading, setIsLoading] = useState(false);
+  // add to cart :
+
+  const addToCart = async (product) => {
+    try {
+      setIsLoading(true);
+      const newItem = {
+        productName: product.name,
+        quantity: 1,
+        productImage: product.images[0].url || "https://www.google.com",
+        productPrice: product.price,
+        productId: product._id,
+      };
+
+      // Make the API request if needed
+      const response = await axios.post(`${API_URL}cart/addtocart`, newItem, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (response.data.success == true) {
+        // Dispatch the addToCart action with the new item
+        dispatch(ADD_TO_CART(response.data.cart));
+        toast.success("successfully added to cart");
+        setIsLoading(false);
+      }
+      toast.error(response.data.message);
+      setIsLoading(false);
+
+      // Handle the response if needed
+    } catch (error) {
+      // Handle error
+      setIsLoading(false);
+      toast.error(data.description);
+    }
+  };
 
   // find single product
 
@@ -156,6 +191,10 @@ const SingleProduct = () => {
     <div>imen nullllllllllllllllll</div>
     return null;
   }
+
+
+
+
 
   return (
     <Box sx={{ padding: "50px 20px" }}>
@@ -296,6 +335,7 @@ const SingleProduct = () => {
               fontSize="10px"
               color="secondary"
               text="Add to bag"
+              onClick={() => addToCart(product)}
               icon={<ShoppingBasketOutlinedIcon sx={{ fontSize: "20px" }} />}
             />
           </Box>

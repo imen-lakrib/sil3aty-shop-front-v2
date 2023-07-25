@@ -1,31 +1,16 @@
 import React from "react";
-import {
-  selectCartItems,
-  selectTotalItemsPrice,
-} from "../../redux/slices/cartSlice";
 import { selectEmail, selectIsLoggedIn } from "../../redux/slices/userSlice";
-import API_URL from "../../routes/Api";
-import { useState, useEffect } from "react";
-import { alpha } from "@mui/material/styles";
+
 import {
   Box,
-  Stack,
-  IconButton,
   Popover,
-  Badge,
-  Card,
   Typography,
-  Button,
   Divider,
   Avatar,
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Add, Delete, Remove } from "@mui/icons-material";
-import Fab from "@mui/material/Fab";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+
+import {  useSelector } from "react-redux";
+import {  useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Flex from "../../theme/Flex";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
@@ -43,7 +28,6 @@ interface UserPopoverProps {
 }
 
 const UserPapover: React.FC<UserPopoverProps> = ({ openUser, setOpenUser }) => {
-  const [isLOading, setIsLoading] = useState(false);
   const useremail= useSelector(selectEmail)
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -55,9 +39,6 @@ const UserPapover: React.FC<UserPopoverProps> = ({ openUser, setOpenUser }) => {
 
   
 
-  const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
-  const totalItemsPrice = useSelector(selectTotalItemsPrice);
 
   // Calculate total items price
 

@@ -12,7 +12,6 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { menu } from "../../data/Data";
 
 import Flex from "../../theme/Flex";
-import SearchBox from "./SearchBox";
 import MenuItems from "./MenuItems";
 import CustomButton from "../../theme/CustomButton";
 import { Link } from "react-router-dom";
@@ -80,7 +79,6 @@ const MobileMenu = () => {
               <LinkedInIcon style={{ color: "#0077b5" }} />
             </Flex>
           </Box>
-          <SearchBox />
           <Divider
             sx={{ backgroundColor: "secondary.light", margin: "20px 0" }}
           />

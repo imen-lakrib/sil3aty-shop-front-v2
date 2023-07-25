@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useFormik } from "formik";
+import { useFormik, FormikValues } from "formik";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -8,7 +8,7 @@ import StepContent from "@mui/material/StepContent";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Card, TextField } from "@mui/material";
 import axios from "axios";
 import API_URL from "../routes/Api";
@@ -17,7 +17,18 @@ import {
   selectTotalItemsPrice,
 } from "../redux/slices/cartSlice";
 
-const steps = [
+interface FormField {
+  name: string;
+  label: string;
+}
+
+interface StepInfo {
+  label: string;
+  description: string;
+  formFields?: FormField[];
+}
+
+const steps: StepInfo[] = [
   {
     label: "Shipping Info",
     description: `Here's the form for shipping info`,
@@ -40,12 +51,11 @@ const steps = [
   },
 ];
 
-export default function StepperForm() {
+const StepperForm: React.FC = () => {
   const cartItems = useSelector(selectCartItems);
   const totalItemsPrice = useSelector(selectTotalItemsPrice);
 
-  const dispatch = useDispatch();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState<number>(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -55,9 +65,7 @@ export default function StepperForm() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  
 
   const formik = useFormik({
     initialValues: {
@@ -68,11 +76,10 @@ export default function StepperForm() {
       pinCode: "",
       phone: "",
     },
-    onSubmit: async (values, { setSubmitting }) => {
+    onSubmit: async (values: FormikValues, { setSubmitting }) => {
       setSubmitting(true);
 
       if (activeStep === 0) {
-        // dispatch(saveShippingInfo(values));
         handleNext(); // Proceed to the next step
       } else if (activeStep === steps.length - 1) {
         // Perform final submit
@@ -91,9 +98,6 @@ export default function StepperForm() {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           });
-
-          // Dispatch any necessary actions after successful submission
-          // dispatch(createOrder(orderData));
 
           handleNext();
         } catch (error) {
@@ -137,7 +141,6 @@ export default function StepperForm() {
                 },
               "& .MuiStepLabel-root .Mui-active .MuiStepIcon-text": {
                 fill: "black", // circle's number (ACTIVE)
-                // color:"secondary.contrastText"
               },
             }}
           >
@@ -145,7 +148,7 @@ export default function StepperForm() {
               optional={
                 index === steps.length - 1 ? (
                   <Typography sx={{ color: "#ffffff" }} variant="caption">
-                    
+                    Finish
                   </Typography>
                 ) : null
               }
@@ -158,14 +161,14 @@ export default function StepperForm() {
               </Typography>
               {activeStep === 1 && (
                 <>
-                  {cartItems.map((item, index) => (
+                  {cartItems.map((item:any, index:any) => (
                     <Card
                       key={index}
                       sx={{ display: "flex", m: "2px", color: "#ffffff" }}
                     >
                       <Box
                         sx={{
-                          backgroundColor:"#1f2937",
+                          backgroundColor: "#1f2937",
                           display: "flex",
                           justifyContent: "space-between",
                           alignItems: "center",
@@ -182,7 +185,6 @@ export default function StepperForm() {
                           <Typography
                             sx={{ color: "#ffffff" }}
                             variant="h6"
-                            
                           >
                             {`${item.productName}`
                               .substring(0, 80)
@@ -199,7 +201,7 @@ export default function StepperForm() {
                           </Box>
                         </Box>
                         <Box>
-                        <Button
+                          <Button
                             variant="outlined"
                             sx={{
                               color: "success.main",
@@ -210,12 +212,9 @@ export default function StepperForm() {
                               padding: "1px",
                             }}
                           >
-                          {(item.productPrice * item.quantity).toFixed(2)}$
-
+                            {(item.productPrice * item.quantity).toFixed(2)}$
                           </Button>
-                         
                         </Box>
-
                       </Box>
                     </Card>
                   ))}
@@ -256,7 +255,7 @@ export default function StepperForm() {
                                 borderColor: "#ffffff", // Border color of the TextField
                                 borderRadius: "20px", // Adding border radius
                                 "& fieldset": {
-                                  border:" 1px solid #ffffff" // Border width of the TextField
+                                  border: "1px solid #ffffff", // Border width of the TextField
                                 },
                               },
                             }}
@@ -295,7 +294,7 @@ export default function StepperForm() {
         ))}
       </Stepper>
       {activeStep === steps.length && (
-        <Paper square elevation={0} sx={{ backgroundColor:"#1f2937",p: 3 }}>
+        <Paper square elevation={0} sx={{ backgroundColor: "#1f2937", p: 3 }}>
           <Typography sx={{ color: "#ffffff" }}>
             Thank you, you will receive an invoice in your email
           </Typography>
@@ -303,4 +302,6 @@ export default function StepperForm() {
       )}
     </Box>
   );
-}
+};
+
+export default StepperForm;
