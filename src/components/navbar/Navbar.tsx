@@ -19,9 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar= () => {
   const navigate= useNavigate()
-  const handleButtonClick = () => {
-    // Handle button click event here
-  };
+ 
 
   const searchbtn = () => {
     // Handle button click event here

@@ -131,6 +131,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ open, setOpen }) => {
             },
           }
         );
+        console.log(response)
         dispatch(
           UPDATE_CART({
             quantity: item.quantity - 1,
@@ -275,7 +276,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ open, setOpen }) => {
               </Box>
             ) : (
               <div>
-                {cartItems.map((item: CartItem, index: number) => (
+                {cartItems.map((item: CartItem) => (
                   <Box key={item._id} sx={{ margin: "20px 0" }}>
                     <Box
                       sx={{
