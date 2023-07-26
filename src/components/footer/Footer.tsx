@@ -1,64 +1,3 @@
-// import React from 'react';
-
-// const Footer: React.FC = () => {
-//   const footerStyle = {
-//     backgroundColor: '#1976D2',
-//     color: '#fff',
-//     padding: '20px 0',
-//     textAlign: 'center' // For medium devices
-//   };
-
-//   const itemStyle = {
-//     display: 'inline-block',
-//     margin: '0 10px',
-//     verticalAlign: 'top',
-//     width: '50%', // For medium devices
-//     [theme.breakpoints.up('lg')]: {
-//       width: '25%' // For large devices
-//     }
-//   };
-
-//   const linkStyle = {
-//     color: '#fff',
-//     display: 'block',
-//     textDecoration: 'none',
-//     margin: '5px 0'
-//   };
-
-//   return (
-//     <footer style={footerStyle}>
-//       {/* Items for Medium and Large Devices */}
-//       <div style={itemStyle}>
-//         <h3>Item 1</h3>
-//         <nav>
-//           <ul>
-//             <li>
-//               <a href="#" style={linkStyle}>Link 1</a>
-//             </li>
-//             <li>
-//               <a href="#" style={linkStyle}>Link 2</a>
-//             </li>
-//             <li>
-//               <a href="#" style={linkStyle}>Link 3</a>
-//             </li>
-//             <li>
-//               <a href="#" style={linkStyle}>Link 4</a>
-//             </li>
-//             <li>
-//               <a href="#" style={linkStyle}>Link 5</a>
-//             </li>
-//           </ul>
-//         </nav>
-//       </div>
-//       {/* Repeat the above div for Item 2, Item 3, and Item 4 */}
-//       {/* Remember to adjust the style if needed for the layout in different screen sizes */}
-//     </footer>
-//   );
-// };
-
-// export default Footer;
-
-import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -67,7 +6,6 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
 import Flex from "../../theme/Flex";
 
@@ -76,7 +14,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
-const Footer = () => {
+const Footer: React.FC = () => { // Make sure to specify React.FC as the type for functional components
   return (
     <div>
       <Divider
@@ -88,12 +26,12 @@ const Footer = () => {
           <Grid item xs={12} sm={4}>
             <Typography
               variant="h6"
-              color="secondary.contrastText"
+              color="textSecondary" // Change to "textSecondary" for secondary text color
               gutterBottom
             >
               About Us
             </Typography>
-            <Typography variant="body2" color="secondary.contrastText">
+            <Typography variant="body2" color="textSecondary"> {/* Change to "textSecondary" */}
               We are XYZ company, dedicated to providing the best service to our
               customers.
             </Typography>
@@ -101,25 +39,25 @@ const Footer = () => {
           <Grid item xs={12} sm={4}>
             <Typography
               variant="h6"
-              color="secondary.contrastText"
+              color="textSecondary" // Change to "textSecondary" for secondary text color
               gutterBottom
             >
               Contact Us
             </Typography>
-            <Typography variant="body2" color="secondary.contrastText">
+            <Typography variant="body2" color="textSecondary"> {/* Change to "textSecondary" */}
               123 Main Street, Anytown, USA
             </Typography>
-            <Typography variant="body2" color="secondary.contrastText">
+            <Typography variant="body2" color="textSecondary"> {/* Change to "textSecondary" */}
               Email: info@example.com
             </Typography>
-            <Typography variant="body2" color="secondary.contrastText">
+            <Typography variant="body2" color="textSecondary"> {/* Change to "textSecondary" */}
               Phone: +1 234 567 8901
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography
               variant="h6"
-              color="secondary.contrastText"
+              color="textSecondary" // Change to "textSecondary" for secondary text color
               gutterBottom
             >
               Follow Us
@@ -144,11 +82,11 @@ const Footer = () => {
         <Box mt={5}>
           <Typography
             variant="body2"
-            color="secondary.contrastText"
+            color="textSecondary" // Change to "textSecondary" for secondary text color
             align="center"
           >
             {"Copyright © "}
-            <Link color="inherit" href="https://your-website.com/">
+            <Link color="inherit" to="https://your-website.com/"> {/* Change href to "to" */}
               Your Website
             </Link>{" "}
             {new Date().getFullYear()}
