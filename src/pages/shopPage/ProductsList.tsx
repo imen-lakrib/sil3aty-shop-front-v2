@@ -1,5 +1,5 @@
-import { Box, Grid, Pagination, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Pagination, Stack, Typography } from "@mui/material";
+import  { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,13 +8,30 @@ import {
   selectFilterProducts,
 } from "../../redux/slices/filterSlice";
 import BarFilter from "./BarFilter";
-import ProductItem from "./ProductItem";
 import ProductCart from "../../theme/carts/ProductCart";
 
-function ProductsList({ products }) {
+
+
+interface Product {
+  // Add properties based on the actual structure of your product objects
+  // For example:
+  id: number;
+  name: string;
+  category: string;
+  brand: string;
+  price: number;
+}
+
+interface ProductsListProps {
+  products: Product[]; // Specify that the products prop is an array of Product objects
+}
+
+const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
   const [grid, setGrid] = useState(true);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("latest");
+
+  console.log(grid)
 
   //
   const filtredProducts = useSelector(selectFilterProducts);
@@ -32,6 +49,7 @@ function ProductsList({ products }) {
   //pagination:
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(6);
+  console.log(setProductsPerPage)
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filtredProducts.slice(
@@ -42,9 +60,9 @@ function ProductsList({ products }) {
   // variable of page
   // page number wich is count
 
-  let numberOfPages = Math.ceil(products.length / productsPerPage);
+  const numberOfPages = Math.ceil(products.length / productsPerPage);
 
-  const handleChange = (event, value) => {
+  const handleChange = (value:any) => {
     setCurrentPage(value);
   };
 
@@ -79,8 +97,8 @@ function ProductsList({ products }) {
           </Box>
         ) : (
           <Box  sx={{ display: "flex", flexWrap:"wrap" }}>
-            {currentProducts.map((product, index) => {
-              return <ProductCart  data={product} />;
+            {currentProducts.map((product:any, index:any) => {
+              return <ProductCart key={index}  data={product} />;
             })}
           </Box>
         )}

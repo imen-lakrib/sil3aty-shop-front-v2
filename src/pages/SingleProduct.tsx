@@ -1,46 +1,30 @@
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
+ 
   Button,
-  Card,
-  Chip,
-  Container,
+ 
   Divider,
-  Grid,
-  IconButton,
-  Rating,
-  TextField,
+ 
   Typography,
 } from "@mui/material";
-import React from "react";
 import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
+
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import { Add, ArrowBack, Remove } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 // import { ADD_TO_CART, DECREASE_CART, selectCartItems } from '../../redux/slices/cartSlice';
 import axios from "axios";
 import StarIcon from "@mui/icons-material/Star";
-import StarHalfIcon from "@mui/icons-material/StarHalf";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { yellow } from "@mui/material/colors";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// import StarHalfIcon from "@mui/icons-material/StarHalf";
+// import StarBorderIcon from "@mui/icons-material/StarBorder";
+// import { yellow } from "@mui/material/colors";
 
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import API_URL from "../routes/Api";
 import Flex from "../theme/Flex";
-import { ADD_TO_CART, selectCartItems } from "../redux/slices/cartSlice";
+import { ADD_TO_CART } from "../redux/slices/cartSlice";
 import CustomIconButton from "../theme/CustomIconButton";
 import CustomAccordion from "../theme/CustomAccordion";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -70,37 +54,37 @@ interface Product {
   __v: number;
 }
 
-const renderRatingStars = (ratings: any) => {
-  const fullStars = Math.floor(ratings);
-  const hasHalfStar = ratings % 1 !== 0;
+// const renderRatingStars = (ratings: any) => {
+//   const fullStars = Math.floor(ratings);
+//   const hasHalfStar = ratings % 1 !== 0;
 
-  const stars = [];
-  for (let i = 0; i < fullStars; i++) {
-    stars.push(
-      <StarIcon sx={{ fontSize: "16px", color: yellow[700] }} key={i} />
-    );
-  }
+//   const stars = [];
+//   for (let i = 0; i < fullStars; i++) {
+//     stars.push(
+//       <StarIcon sx={{ fontSize: "16px", color: yellow[700] }} key={i} />
+//     );
+//   }
 
-  if (hasHalfStar) {
-    stars.push(
-      <StarHalfIcon
-        sx={{ fontSize: "16px", color: yellow[700] }}
-        key={fullStars}
-      />
-    );
-  }
+//   if (hasHalfStar) {
+//     stars.push(
+//       <StarHalfIcon
+//         sx={{ fontSize: "16px", color: yellow[700] }}
+//         key={fullStars}
+//       />
+//     );
+//   }
 
-  while (stars.length < 5) {
-    stars.push(
-      <StarBorderIcon
-        sx={{ fontSize: "16px", color: yellow[700] }}
-        key={stars.length}
-      />
-    );
-  }
+//   while (stars.length < 5) {
+//     stars.push(
+//       <StarBorderIcon
+//         sx={{ fontSize: "16px", color: yellow[700] }}
+//         key={stars.length}
+//       />
+//     );
+//   }
 
-  return stars;
-};
+//   return stars;
+// };
 const SingleProduct = () => {
   const dispatch = useDispatch();
 
@@ -131,8 +115,9 @@ const SingleProduct = () => {
   // add to cart :
   const [isLOading, setIsLoading] = useState(false);
   // add to cart :
+  console.log(isLOading)
 
-  const addToCart = async (product) => {
+  const addToCart = async (product:any) => {
     try {
       setIsLoading(true);
       const newItem = {
@@ -162,31 +147,31 @@ const SingleProduct = () => {
     } catch (error) {
       // Handle error
       setIsLoading(false);
-      toast.error(data.description);
+      toast.error("error");
     }
   };
 
   // find single product
 
-  const cartItems = useSelector(selectCartItems);
-  const prodactCart = cartItems.find((item: any) => item.id === id);
+  // const cartItems = useSelector(selectCartItems);
+  // const prodactCart = cartItems.find((item: any) => item.id === id);
 
-  const decreaseCart = async (product: any) => {
-    try {
-      if (product.cartQuantity > 1) {
-        const response = await axios.put(
-          `${API_URL}cart/updatecart/${product._id}`,
-          product.cartQuantity - 1
-        );
-      } else {
-        const response = await axios.delete(
-          `${API_URL}cart/delete${product._id}`
-        );
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const decreaseCart = async (product: any) => {
+  //   try {
+  //     if (product.cartQuantity > 1) {
+  //       const response = await axios.put(
+  //         `${API_URL}cart/updatecart/${product._id}`,
+  //         product.cartQuantity - 1
+  //       );
+  //     } else {
+  //       const response = await axios.delete(
+  //         `${API_URL}cart/delete${product._id}`
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   if (!product) {
     <div>imen nullllllllllllllllll</div>
     return null;

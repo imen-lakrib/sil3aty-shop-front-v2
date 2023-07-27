@@ -1,6 +1,5 @@
-import React from "react";
 import ImagesSwiper from "../theme/swiperOfImages/ImagesSwiper";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const About = () => {
   return (

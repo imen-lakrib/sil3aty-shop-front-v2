@@ -5,9 +5,7 @@ import {
   AccordionDetails,
   Typography,
   Box,
-  IconButton,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { alpha } from "@mui/material/styles";

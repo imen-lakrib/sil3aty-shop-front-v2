@@ -1,11 +1,26 @@
-import { Box, Button, Card, FormControl, FormLabel, MenuItem, Select, Slider } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Box, Button, FormControl, FormLabel, Slider } from '@mui/material'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FILTER_BY_BRAND, FILTER_BY_CATEGORY, FILTER_BY_PRICE } from '../../redux/slices/filterSlice'
 import { selectMaxPrice, selectMinPrice } from '../../redux/slices/productSlice'
 import CustomButton from '../../theme/CustomButton'
 
-const ProductFilter = ({ products }) => {
+
+// Define the Product interface
+interface Product {
+    // Add properties based on the actual structure of your product objects
+    // For example:
+    id: number;
+    name: string;
+    category: string;
+    brand: string;
+    price: number;
+  }
+
+  interface ProductFilterProps {
+    products: Product[]; // Specify that the products prop is an array of Product objects
+  }
+  const ProductFilter: React.FC<ProductFilterProps> = ({ products }) => {
     // filter by category
     const dispatch = useDispatch()
     const [category, setCategory] = useState("All")
@@ -14,7 +29,7 @@ const ProductFilter = ({ products }) => {
         ...new Set(products.map(product => product.category))
     ]
 
-    const filterProducts = (cat) => {
+    const filterProducts = (cat:any) => {
         setCategory(cat)
         dispatch(FILTER_BY_CATEGORY({ products, category: cat }))
     }

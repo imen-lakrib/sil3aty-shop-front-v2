@@ -1,18 +1,13 @@
 import axios from "axios";
 import API_URL from "../../routes/Api";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Avatar,
   Box,
-  Button,
   Card,
   Chip,
   CircularProgress,
-  Grid,
-  Input,
-  InputAdornment,
-  Paper,
+ 
   Stack,
   Table,
   TableBody,
@@ -21,12 +16,9 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  TextField,
   Typography,
 } from "@mui/material";
-import jwt_decode from "jwt-decode";
-import EditIcon from "@mui/icons-material/Edit";
-import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+
 import { GET_MY_ORDERS, selectMyOrders } from "../../redux/slices/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -37,7 +29,6 @@ const MyOrders = () => {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - myOrders.length) : 0;
   const [connectionErr, setConnectionErr] = useState(false);
-  const [search, setSearch] = useState("");
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -50,14 +41,12 @@ const MyOrders = () => {
 
   // the order data:
 
-  const [orderStatus, setOrderStatus] = useState("");
 
   const [selected, setSelected] = useState({});
 
   const [isLoadingOrder, setIsLoadingOrder] = useState(false);
 
-  const [models, setModels] = useState([]);
-  const [progress, setProgress] = useState(0);
+ 
 
   // {/* ***********************************handle form dialog ********************************* */}
 

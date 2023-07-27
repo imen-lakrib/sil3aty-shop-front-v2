@@ -55,6 +55,7 @@ interface QuickViewProps {
 const QuickView: React.FC<QuickViewProps> = ({ open, setOpen, data }) => {
 
   const [isLOading, setIsLoading] = useState(false);
+  console.log(isLOading)
   // add to cart :
   const dispatch = useDispatch();
 

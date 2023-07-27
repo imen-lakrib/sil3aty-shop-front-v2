@@ -53,17 +53,18 @@ const Navbar= () => {
   }, []);
 
   // user papover
-  const [openUser, setOpenUser] = useState(null);
+  const [openUser, setOpenUser] = useState<null | HTMLElement>(null);
 
-  const handleOpenUser = (event: any) => {
+
+  const handleOpenUser = (event: React.MouseEvent<HTMLElement>) => {
     setOpenUser(event.currentTarget);
   };
 
    // cart papover
-   const [open, setOpen] = useState(null);
+   const [open, setOpen] = useState<boolean>(false);
 
-   const handleOpen = (event: any) => {
-     setOpen(event.currentTarget);
+   const handleOpen = () => {
+     setOpen(true);
    };
 
 

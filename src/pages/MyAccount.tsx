@@ -5,22 +5,22 @@ import Box from '@mui/material/Box';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
-const TabPanel = ({ value, index, children }) => {
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`tabpanel-${index}`}
-      aria-labelledby={`tab-${index}`}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
-    </div>
-  );
-};
+// const TabPanel = ({ value, index, children }) => {
+//   return (
+//     <div
+//       role="tabpanel"
+//       hidden={value !== index}
+//       id={`tabpanel-${index}`}
+//       aria-labelledby={`tab-${index}`}
+//     >
+//       {value === index && (
+//         <Box sx={{ p: 3 }}>
+//           {children}
+//         </Box>
+//       )}
+//     </div>
+//   );
+// };
 
 const MyAccount = () => {
   const location = useLocation();

@@ -1,7 +1,5 @@
-import React from "react";
 import StepCart from "../../theme/carts/StepCart";
 import Flex from "../../theme/Flex";
-import { Box } from "@mui/material";
 
 const steps = [
   {

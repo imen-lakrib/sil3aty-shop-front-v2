@@ -1,52 +1,135 @@
-import axios from "axios";
-import API_URL from "../../routes/Api";
+// import axios from "axios";
+// import API_URL from "../../routes/Api";
 
-import React, { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+// import {
+//   Avatar,
+//   Box,
+//   Button,
+//   Input,
+//   InputAdornment,
+//   Typography,
+// } from "@mui/material";
+// import jwt_decode from "jwt-decode";
+// import EditIcon from "@mui/icons-material/Edit";
+// import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+
+// const AccountInfo = () => {
+//   const [userInfo, setUserInfo] = useState({});
+//   const [editing, setEditing] = useState(false);
+//   const [editedInfo, setEditedInfo] = useState({});
+
+//   useEffect(() => {
+//     // Decode the token to extract the role
+//     const decodedToken = jwt_decode(localStorage.getItem("token"));
+//     const userId = decodedToken?.id?.id;
+
+//     const fetchUserProfile = async (userId) => {
+//       try {
+//         const response = await axios.get(`${API_URL}user/profile/${userId}`, {
+//           headers: {
+//             Authorization: `Bearer ${localStorage.getItem("token")}`,
+//           },
+//         });
+
+//         setUserInfo(response.data);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     };
+
+//     if (userId) {
+//       fetchUserProfile(userId);
+//     }
+//   }, []);
+
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setEditedInfo((prevInfo) => ({
+//       ...prevInfo,
+//       [name]: value,
+//     }));
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const updatedInfo = { ...userInfo, ...editedInfo };
+//       await axios.put(`${API_URL}user/edit/${userInfo._id}`, updatedInfo, {
+//         headers: {
+//           Authorization: `Bearer ${localStorage.getItem("token")}`,
+//         },
+//       });
+//       console.log("gooooooooooooooooooooooood");
+
+//       // Optional: Show success message or perform other actions
+
+//       setEditing(false);
+//       setUserInfo(updatedInfo);
+//       setEditedInfo({});
+//     } catch (error) {
+//       console.log(error);
+//       console.log("baaaaaaaaaaaaaaaaaaaaad");
+
+//       // Optional: Show error message or perform error handling
+//     }
+//   };
+
+import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import {
   Avatar,
   Box,
   Button,
-  Grid,
   Input,
   InputAdornment,
-  Paper,
-  TextField,
   Typography,
 } from "@mui/material";
 import jwt_decode from "jwt-decode";
 import EditIcon from "@mui/icons-material/Edit";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+import axios from "axios";
+import API_URL from "../../routes/Api";
 
-const AccountInfo = () => {
-  const [userInfo, setUserInfo] = useState({});
+interface UserInfo {
+  _id: string;
+  username: string;
+  email: string;
+  // Add other fields based on your user information
+}
+
+const AccountInfo: React.FC = () => {
+  const [userInfo, setUserInfo] = useState<UserInfo>({ _id: "", username: "", email: "" });
   const [editing, setEditing] = useState(false);
-  const [editedInfo, setEditedInfo] = useState({});
+  const [editedInfo, setEditedInfo] = useState<Partial<UserInfo>>({});
 
   useEffect(() => {
     // Decode the token to extract the role
-    const decodedToken = jwt_decode(localStorage.getItem("token"));
-    const userId = decodedToken?.id?.id;
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken: { id: { id: string } } = jwt_decode(token);
+      const userId = decodedToken?.id?.id;
 
-    const fetchUserProfile = async (userId) => {
-      try {
-        const response = await axios.get(`${API_URL}user/profile/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+      const fetchUserProfile = async (userId: string) => {
+        try {
+          const response = await axios.get(`${API_URL}user/profile/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
-        setUserInfo(response.data);
-      } catch (error) {
-        console.log(error);
+          setUserInfo(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      if (userId) {
+        fetchUserProfile(userId);
       }
-    };
-
-    if (userId) {
-      fetchUserProfile(userId);
     }
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setEditedInfo((prevInfo) => ({
       ...prevInfo,
@@ -54,7 +137,7 @@ const AccountInfo = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const updatedInfo = { ...userInfo, ...editedInfo };
@@ -236,7 +319,7 @@ const AccountInfo = () => {
         </Box>
       </Box>
     </Box>
-  );
+  );/*  */
 };
 
 export default AccountInfo;

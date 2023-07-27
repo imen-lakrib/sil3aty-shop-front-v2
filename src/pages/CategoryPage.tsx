@@ -1,8 +1,7 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectProducts } from '../redux/slices/productSlice';
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import ProductCart from '../theme/carts/ProductCart';
 
 const CategoryPage = () => {
@@ -35,7 +34,7 @@ const CategoryPage = () => {
       ) : (
         <Box  sx={{ display: "flex", flexWrap:"wrap" }}>
 
-          {filteredProducts.map((product, index) => (
+          {filteredProducts.map((product) => (
               <ProductCart  data={product} />
           ))}
         </Box>

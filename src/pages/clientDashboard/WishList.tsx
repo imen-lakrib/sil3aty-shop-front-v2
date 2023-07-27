@@ -4,10 +4,6 @@ import {
   Button,
   Typography,
   Grid,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -15,7 +11,6 @@ import { selectWishlist, STORE_WISHLIST_ITEMS } from "../../redux/slices/wishLis
 import WishlistCart from "../../theme/carts/WishlistCart";
 import axios from "axios";
 import API_URL from "../../routes/Api";
-import { ADD_TO_CART } from "../../redux/slices/cartSlice";
 import { toast } from "react-toastify";
 
 const WishList: React.FC = () => {

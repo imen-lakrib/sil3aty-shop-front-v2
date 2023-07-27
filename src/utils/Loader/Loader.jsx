@@ -1,4 +1,3 @@
-import { CircularProgress, Box } from "@mui/material";
 
 function Loader() {
   return (

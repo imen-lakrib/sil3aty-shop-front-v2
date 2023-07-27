@@ -31,6 +31,7 @@ interface Product {
 
 const WishlistCart: React.FC<{ data: Product }> = ({ data }) => {
   const [isLoadingWishlist, setIsLoadingWishlist] = useState(false);
+  console.log(isLoadingWishlist)
 
   const navigate = useNavigate();
   const openProductDetails = (id: string) => {
@@ -38,6 +39,7 @@ const WishlistCart: React.FC<{ data: Product }> = ({ data }) => {
   };
 
   const [isLoading, setIsLoading] = React.useState(false);
+  console.log(isLoading)
   const dispatch = useDispatch();
 
   const addToCart = async () => {
@@ -71,7 +73,7 @@ const WishlistCart: React.FC<{ data: Product }> = ({ data }) => {
     } catch (error) {
       setIsLoading(false);
       
-      toast.error(error.message || "Failed to add to cart");
+      toast.error("Failed to add to cart");
     }
   };
 
@@ -93,7 +95,7 @@ const WishlistCart: React.FC<{ data: Product }> = ({ data }) => {
       }
     } catch (error) {
       setIsLoadingWishlist(false);
-      toast.error(error.message);
+      toast.error("error");
     }
   };
 

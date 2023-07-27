@@ -50,7 +50,7 @@ interface ProductDataProps {
 const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
   // single product page:
   const navigate = useNavigate();
-  const openProductDetails = (data) => {
+  const openProductDetails = (data:any) => {
     navigate(`/product-details/${data._id}`);
   };
 
@@ -70,6 +70,7 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
   const dispatch = useDispatch();
 
   const [isLOading, setIsLoading] = useState(false);
+  console.log(isLOading)
   // add to cart :
   const addToCart = async (data: ProductDataProps["data"]) => {
     try {
@@ -115,7 +116,7 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
 
       // Check if the product already exists in the wishlist
       const productExists = wishListData.find(
-        (item) => item.productId === data._id
+        (item:any) => item.productId === data._id
       );
 
       if (productExists) {
@@ -155,7 +156,7 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
       // Handle error
       setIsLoading(false);
       toast.error(
-        error.message || "An error occurred while adding to the wishlist"
+        "An error occurred while adding to the wishlist"
       );
     }
   };

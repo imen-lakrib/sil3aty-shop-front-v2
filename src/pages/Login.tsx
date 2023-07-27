@@ -4,20 +4,18 @@ import {
   Box,
   Button,
   Container,
-  Divider,
-  FormControl,
+ 
   Grid,
   IconButton,
   Input,
   InputAdornment,
-  InputLabel,
-  TextField,
+  
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Flex from "../theme/Flex";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_ACTIVE_USER, selectIsLoggedIn } from "../redux/slices/userSlice";
@@ -26,8 +24,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import jwt_decode from "jwt-decode";
 import API_URL from "../routes/Api";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+
 import Loader from "../utils/Loader/Loader";
 
 interface DecodedToken {
@@ -37,16 +34,11 @@ interface DecodedToken {
 }
 
 const Login = () => {
-  const ariaLabel = { "aria-label": "description" };
 
   const [isLOading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const handleShowPassword = () => {
-    setShowPassword((show) => !show);
-  };
-
+  
   const [error, setError] = useState(false);
-  const isSubmitting = false;
 
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -63,7 +55,7 @@ const Login = () => {
       email: Yup.string().max(30).required("Ce champ est obligatoire"),
       password: Yup.string().max(30).required("Ce champ est obligatoire"),
     }),
-    onSubmit: async (values, helpers) => {
+    onSubmit: async (values) => {
       try {
         setIsLoading(true);
         const result = await axios.post(`${API_URL}user/login`, {

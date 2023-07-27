@@ -1,34 +1,13 @@
-import { Facebook, Google } from "@mui/icons-material";
 import {
-  Alert,
   Box,
   Button,
-  Container,
-  Divider,
-  FormControl,
-  Grid,
-  IconButton,
   Input,
-  InputAdornment,
-  InputLabel,
-  TextField,
+  
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
 import Flex from "../theme/Flex";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from "react-redux";
-import { SET_ACTIVE_USER, selectIsLoggedIn } from "../redux/slices/userSlice";
-import axios from "axios";
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import jwt_decode from "jwt-decode";
-import API_URL from "../routes/Api";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import Loader from "../utils/Loader/Loader";
+
 import { Avatar } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";

@@ -1,5 +1,4 @@
 import { IconButton, InputBase } from "@mui/material";
-import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 
 const Search = ({ value, onChange }) => {

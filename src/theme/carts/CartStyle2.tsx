@@ -2,7 +2,7 @@ import React from "react";
 import Flex from "../Flex";
 import { Box, Typography } from "@mui/material";
 import CustomButton from "../CustomButton";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface CartStyle2Props {
   data: {
@@ -18,7 +18,7 @@ interface CartStyle2Props {
 
 const CartStyle2: React.FC<CartStyle2Props> = ({ data }) => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
 
 

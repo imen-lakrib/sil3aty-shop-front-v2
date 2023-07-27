@@ -1,13 +1,9 @@
-import React from "react";
-import Flex from "../../theme/Flex";
 import CustomTitle from "../../theme/CustomTitle";
-import Arrows from "../../theme/Arrows";
-import { Box, Container } from "@mui/material";
-import ProductCart from "../../theme/carts/ProductCart";
+import { Box } from "@mui/material";
 import SwiperModel from "../../theme/swiper/SwiperModel";
 
 
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { selectProducts } from "../../redux/slices/productSlice";
 
 

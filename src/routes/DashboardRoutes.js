@@ -5,7 +5,7 @@ import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import PersonIcon from '@mui/icons-material/Person';
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
+// import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
     export const menu =[
  
