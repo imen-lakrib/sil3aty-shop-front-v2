@@ -26,38 +26,37 @@ const Footer: React.FC = () => { // Make sure to specify React.FC as the type fo
           <Grid item xs={12} sm={4}>
             <Typography
               variant="h6"
-              color="textSecondary" // Change to "textSecondary" for secondary text color
+              color="secondary.contrastText" // Change to "textSecondary" for secondary text color
               gutterBottom
             >
               About Us
             </Typography>
-            <Typography variant="body2" color="textSecondary"> {/* Change to "textSecondary" */}
-              We are XYZ company, dedicated to providing the best service to our
-              customers.
+            <Typography variant="body2" color="secondary.contrastText"> {/* Change to "textSecondary" */}
+              We are an Ecommerce Company where you can buy your customize online store with a lot of features
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography
               variant="h6"
-              color="textSecondary" // Change to "textSecondary" for secondary text color
+              color="secondary.contrastText" // Change to "textSecondary" for secondary text color
               gutterBottom
             >
               Contact Us
             </Typography>
-            <Typography variant="body2" color="textSecondary"> {/* Change to "textSecondary" */}
-              123 Main Street, Anytown, USA
+            <Typography variant="body2" color="secondary.contrastText"> {/* Change to "textSecondary" */}
+            lakribimen@gmail.com
             </Typography>
-            <Typography variant="body2" color="textSecondary"> {/* Change to "textSecondary" */}
-              Email: info@example.com
+            <Typography variant="body2" color="secondary.contrastText"> {/* Change to "textSecondary" */}
+              Email: lakribimen@gmail.com
             </Typography>
-            <Typography variant="body2" color="textSecondary"> {/* Change to "textSecondary" */}
-              Phone: +1 234 567 8901
+            <Typography variant="body2" color="secondary.contrastText"> {/* Change to "textSecondary" */}
+              Linkedin: imenlakrib
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography
               variant="h6"
-              color="textSecondary" // Change to "textSecondary" for secondary text color
+              color="secondary.contrastText" // Change to "textSecondary" for secondary text color
               gutterBottom
             >
               Follow Us
@@ -82,12 +81,13 @@ const Footer: React.FC = () => { // Make sure to specify React.FC as the type fo
         <Box mt={5}>
           <Typography
             variant="body2"
-            color="textSecondary" // Change to "textSecondary" for secondary text color
+            color="secondary.contrastText" // Change to "textSecondary" for secondary text color
             align="center"
+            sx={{padding:"20px 0"}}
           >
             {"Copyright © "}
-            <Link color="inherit" to="https://your-website.com/"> {/* Change href to "to" */}
-              Your Website
+            <Link style={{color:"#00A0C6", textDecoration:"none",cursor:"pointer" }}  to="https://sil3aty-shop-front-v2.vercel.app/"> {/* Change href to "to" */}
+              Sil3aty.shop
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}

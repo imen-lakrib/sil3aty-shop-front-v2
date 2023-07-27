@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Input,
-  
-  Typography,
-} from "@mui/material";
+import { Box, Button, Input, Typography } from "@mui/material";
 
 import Flex from "../theme/Flex";
 
@@ -13,8 +7,42 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { useState } from "react";
+import axios from "axios";
+import API_URL from "../routes/Api";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await axios.post(`${API_URL}send-email`, formData);
+      alert("Message sent successfully!");
+      // Reset the form after successful submission
+      setFormData({
+        fullname: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("An error occurred while sending the message.");
+    }
+  };
+
   return (
     <Box sx={{ textAlign: "center", color: "secondary.light" }}>
       <Typography
@@ -27,7 +55,7 @@ const Contact = () => {
         sx={{
           margin: "20px",
           alignItems: "start",
-          display: {sx:"block", sm:"block", md:"flex", lg:"flex"},
+          display: { sx: "block", sm: "block", md: "flex", lg: "flex" },
           flexGrow: 1,
           justifyContent: "space-around",
         }}
@@ -84,7 +112,7 @@ const Contact = () => {
             </Typography>
           </Box>
 
-          <Box sx={{ marginBottom: "20px", width:"200px" }}>
+          <Box sx={{ marginBottom: "20px", width: "200px" }}>
             <Typography
               variant="h5"
               sx={{ color: "secondary.light", marginBottom: "10px" }}
@@ -92,10 +120,10 @@ const Contact = () => {
               🌏 SOCIALS
             </Typography>
             <Flex justifyContent="space-between">
-              <Avatar  sx={{ bgcolor: "#1877f2", width: 34, height: 34 }}>
+              <Avatar sx={{ bgcolor: "#1877f2", width: 34, height: 34 }}>
                 <FacebookIcon />
               </Avatar>
-              <Avatar sx={{ bgcolor: "#E1306C" , width: 34, height: 34}}>
+              <Avatar sx={{ bgcolor: "#E1306C", width: 34, height: 34 }}>
                 <InstagramIcon />
               </Avatar>
               <Avatar sx={{ bgcolor: "#FF0000", width: 34, height: 34 }}>
@@ -113,24 +141,17 @@ const Contact = () => {
             width: { xs: "100%", sm: "100%", md: "50%", lg: "50%" },
           }}
         >
-          <form
-            autoComplete="off"
-            noValidate
-            // onSubmit={formik.handleSubmit}
-          >
+          <form autoComplete="off" onSubmit={handleSubmit}>
             <Box sx={{ textAlign: "left", margin: "15px 0" }}>
               <Typography>Full name</Typography>
               <Input
-                // onChange={formik.handleChange}
-                // value={formik.values.email}
-                // error={Boolean(formik.touched.email && formik.errors.email)}
-                // helperText={formik.touched.email && formik.errors.email}
                 fullWidth
                 name="fullname"
                 type="text"
                 placeholder="Full name"
-                //   inputProps={ariaLabel}
                 inputProps={{ style: { color: "#ffffff" } }}
+                value={formData.fullname}
+                onChange={handleChange}
                 sx={{
                   mt: "5px",
                   padding: "8px 12px",
@@ -146,16 +167,13 @@ const Contact = () => {
             <Box sx={{ textAlign: "left", margin: "15px 0" }}>
               <Typography>Email</Typography>
               <Input
-                // onChange={formik.handleChange}
-                // value={formik.values.email}
-                // error={Boolean(formik.touched.email && formik.errors.email)}
-                // helperText={formik.touched.email && formik.errors.email}
                 fullWidth
                 name="email"
                 type="text"
                 placeholder="Email"
-                //   inputProps={ariaLabel}
                 inputProps={{ style: { color: "#ffffff" } }}
+                value={formData.email}
+                onChange={handleChange}
                 sx={{
                   mt: "5px",
                   padding: "8px 12px",
@@ -171,10 +189,6 @@ const Contact = () => {
             <Box sx={{ textAlign: "left", margin: "15px 0" }}>
               <Typography>Message</Typography>
               <Input
-                // onChange={formik.handleChange}
-                // value={formik.values.email}
-                // error={Boolean(formik.touched.email && formik.errors.email)}
-                // helperText={formik.touched.email && formik.errors.email}
                 fullWidth
                 name="message"
                 multiline
@@ -182,6 +196,8 @@ const Contact = () => {
                 type="text"
                 placeholder="Message"
                 inputProps={{ style: { color: "#ffffff" } }}
+                value={formData.message}
+                onChange={handleChange}
                 sx={{
                   mt: "5px",
                   padding: "8px 12px",
@@ -196,8 +212,6 @@ const Contact = () => {
 
             <Box sx={{ py: 1 }}>
               <Button
-                // disabled={formik.isSubmitting}
-
                 size="large"
                 type="submit"
                 variant="contained"
@@ -212,7 +226,6 @@ const Contact = () => {
                   },
                 }}
               >
-                {/* {isLOading ? <Loader /> : "Continue"} */}
                 Send Message
               </Button>
             </Box>
