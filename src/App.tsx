@@ -29,6 +29,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CheckOut from "./pages/clientDashboard/CheckOut";
 import Shop from "./pages/shopPage/Shop";
 import CategoryPage from "./pages/CategoryPage";
+import API_URL from "./routes/Api";
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
 
   const getData = async () => {
     try {
-      const res = await axios.get(`http://localhost:3012/products/allProducts`);
+      const res = await axios.get(`${API_URL}products/allProducts`);
      
       dispatch(STORE_PRODUCTS({ products: res.data.products }));
       dispatch(GET_PRICE_RANGE({ products: res.data.products }));
