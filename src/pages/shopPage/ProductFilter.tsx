@@ -89,7 +89,9 @@ interface Product {
                         },
                     }}
                     value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e:any) => setPrice(e.target.value)}
+                    // onChange={(e, newValue) => setPrice(newValue as number)} {/* Cast newValue as number */}
+
                     min={minPrice}
                     max={maxPrice}
                     aria-label="Default"

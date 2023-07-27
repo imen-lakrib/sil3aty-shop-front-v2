@@ -197,7 +197,7 @@ const WishlistCart: React.FC<{ data: Product }> = ({ data }) => {
               fontSize="10px"
               color="secondary"
               text="Add to bag"
-              onClick={() => addToCart(data)}
+              onClick={() => addToCart()}
               icon={<ShoppingBasketOutlinedIcon sx={{ fontSize: "20px" }} />}
             />
           </Box>

@@ -31,13 +31,13 @@ const WishList: React.FC = () => {
         console.log("not found");
       }
     } catch (error) {
-      toast.error(error.message || "Error fetching wishlist items");
+      toast.error("Error fetching wishlist items");
     }
   };
 
   React.useEffect(() => {
     fetchWishlistItems();
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -56,7 +56,7 @@ const WishList: React.FC = () => {
           </Box>
         ) : (
           <Grid container spacing={2}>
-            {wishlistItems.map((row) => (
+            {wishlistItems.map((row:any) => (
               <Grid key={row._id} item xs={12} sm={12} md={6} lg={4}>
                 <WishlistCart data={row} />
               </Grid>

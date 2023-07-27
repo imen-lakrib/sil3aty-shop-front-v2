@@ -26,9 +26,10 @@ const MyAccount = () => {
   const location = useLocation();
   const paths = location.pathname.split('/').filter((path) => path);
 
-  const [activeTab, setActiveTab] = React.useState(paths[2] || 'account-info');
+  const [activeTab, setActiveTab] = React.useState<string>(paths[2] || 'account-info');
 
-  const handleTabChange = (event, newValue) => {
+  const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+    console.log(event)
     setActiveTab(newValue);
   };
 

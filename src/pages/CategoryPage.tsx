@@ -4,8 +4,33 @@ import { selectProducts } from '../redux/slices/productSlice';
 import { Box, Container, Typography } from '@mui/material';
 import ProductCart from '../theme/carts/ProductCart';
 
+
+interface Product {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  discountPrice: number;
+  color: string;
+  size: string;
+  ratings: number;
+  images: { public_id: string; url: string; _id: string }[];
+  category: string;
+  stock: number;
+  numberOfReviews: number;
+  createdAt: string;
+  reviews: {
+    user: string;
+    rating: number;
+    comment: string;
+    time: string;
+    _id: string;
+  }[];
+  __v: number;
+}
 const CategoryPage = () => {
-  const products = useSelector(selectProducts);
+  const products: Product[] = useSelector(selectProducts);
+
   const { category } = useParams();
 
   // Filter products based on the category

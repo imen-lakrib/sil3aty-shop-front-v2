@@ -1,7 +1,13 @@
 import { IconButton, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { ChangeEvent } from "react"; // Import ChangeEvent type
 
-const Search = ({ value, onChange }) => {
+interface SearchProps {
+  value: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Search: React.FC<SearchProps> = ({ value, onChange }) => { // Add types to props
   return (
     <>
       <InputBase

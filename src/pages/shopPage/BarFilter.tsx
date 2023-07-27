@@ -14,6 +14,17 @@ import {
 } from "@mui/material";
 import Search from "./Search";
 
+
+interface BarFilterProps {
+  filtredProducts: any[]; // Replace 'any' with the appropriate type for 'filtredProducts'
+  setGrid: (grid: boolean) => void; // Replace 'any' with the appropriate type for 'setGrid'
+  search: string; // Replace 'any' with the appropriate type for 'search'
+  setSearch: (search: string) => void; // Replace 'any' with the appropriate type for 'setSearch'
+  sort: string; // Replace 'any' with the appropriate type for 'sort'
+  setSort: (sort: string) => void; // Replace 'any' with the appropriate type for 'setSort'
+}
+
+
 const BarFilter = ({
   filtredProducts,
   setGrid,
@@ -21,7 +32,7 @@ const BarFilter = ({
   setSearch,
   sort,
   setSort,
-}) => {
+}: BarFilterProps) => {
   return (
     <Box sx={{ p: "2px 4px", display: "flex", alignItems: "center", border: "1px solid #ffffff", borderRadius: "18px" }}>
       <IconButton

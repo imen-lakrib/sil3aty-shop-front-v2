@@ -23,16 +23,25 @@ import { GET_MY_ORDERS, selectMyOrders } from "../../redux/slices/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const MyOrders = () => {
+
+  const dispatch = useDispatch();
+  const myOrders = useSelector(selectMyOrders);
+
+
   // Mui table
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - myOrders.length) : 0;
   const [connectionErr, setConnectionErr] = useState(false);
-  const handleChangePage = (event, newPage) => {
+ 
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    console.log(event)
     setPage(newPage);
   };
-  const handleChangeRowsPerPage = (event) => {
+
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -53,8 +62,7 @@ const MyOrders = () => {
   // {/* ***********************************crud opperation********************************* */}
 
   // get all orders:
-  const dispatch = useDispatch();
-  const myOrders = useSelector(selectMyOrders);
+  
 
   const getMyOrders = async () => {
     try {
@@ -112,7 +120,7 @@ const MyOrders = () => {
                   myOrders
                     // .filter(e => e.email?.toLowerCase().includes(search.toLowerCase()))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
+                    .map((row:any, index:any) => {
                       return (
                         <TableRow
                           key={row._id}
@@ -188,7 +196,7 @@ const MyOrders = () => {
                                   </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                  {row.orderItems.map((order) => (
+                                  {row.orderItems.map((order:any) => (
                                     <TableRow key={order.productId}>
                                       <TableCell sx={{color:"secondary.light" }}>{order.productName}</TableCell>
                                       <TableCell sx={{color:"secondary.light" }}>
