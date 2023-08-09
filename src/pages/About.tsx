@@ -72,13 +72,13 @@ const About = () => {
               variant="h5"
               sx={{ fontWeight: 600, color: "secondary.light" }}
             >
-              Niamh O'Shea
+              Imen Lakrib
             </Typography>
             <Typography
               variant="h6"
               sx={{ fontWeight: 400, color: "secondary.contrastText" }}
             >
-              Co-founder and Chief Executive
+              FullStack Web DEveloper
             </Typography>
           </Box>
         </Box>
