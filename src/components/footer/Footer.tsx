@@ -11,7 +11,6 @@ import Flex from "../../theme/Flex";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer: React.FC = () => { // Make sure to specify React.FC as the type for functional components

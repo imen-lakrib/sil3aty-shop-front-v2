@@ -247,7 +247,7 @@ const ProductCart: React.FC<ProductDataProps> = ({ data }) => {
             {data.name}
           </Typography>
           <Typography sx={{ color: "secondary.contrastText" }}>
-            {data.description}
+            {data.description.length > 120 ? data.description.substring(0, 120) + "..." : data.description}
           </Typography>
         </Box>
         <Flex justifyContent="space-between" alignItems="flex-end">
