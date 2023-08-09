@@ -15,6 +15,12 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer: React.FC = () => { // Make sure to specify React.FC as the type for functional components
+  const socialLinks = {
+    facebook:
+      "https://www.facebook.com/profile.php?id=100093474605582&mibextid=ZbWKwL",
+    instagram: "https://instagram.com/imen_lakrib",
+    linkedin: "https://www.linkedin.com/in/imenlakrib",
+  };
   return (
     <div>
       <Divider
@@ -62,18 +68,33 @@ const Footer: React.FC = () => { // Make sure to specify React.FC as the type fo
               Follow Us
             </Typography>
             <Flex justifyContent="space-between">
-              <Avatar sx={{ bgcolor: "#1877f2", width: 34, height: 34 }}>
-                <FacebookIcon />
-              </Avatar>
-              <Avatar sx={{ bgcolor: "#E1306C", width: 34, height: 34 }}>
-                <InstagramIcon />
-              </Avatar>
-              <Avatar sx={{ bgcolor: "#FF0000", width: 34, height: 34 }}>
-                <YouTubeIcon />
-              </Avatar>
-              <Avatar sx={{ bgcolor: "#0A66C2", width: 34, height: 34 }}>
-                <LinkedInIcon />
-              </Avatar>
+              <a
+                href={socialLinks.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Avatar sx={{ bgcolor: "#1877f2", width: 34, height: 34 }}>
+                  <FacebookIcon />
+                </Avatar>
+              </a>
+              <a
+                href={socialLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Avatar sx={{ bgcolor: "#E1306C", width: 34, height: 34 }}>
+                  <InstagramIcon />
+                </Avatar>
+              </a>
+              <a
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Avatar sx={{ bgcolor: "#0A66C2", width: 34, height: 34 }}>
+                  <LinkedInIcon />
+                </Avatar>
+              </a>
             </Flex>
           </Grid>
         </Grid>

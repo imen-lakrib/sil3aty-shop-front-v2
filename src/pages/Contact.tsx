@@ -43,6 +43,13 @@ const Contact = () => {
     }
   };
 
+  const socialLinks = {
+    facebook:
+      "https://www.facebook.com/profile.php?id=100093474605582&mibextid=ZbWKwL",
+    instagram: "https://instagram.com/imen_lakrib",
+    linkedin: "https://www.linkedin.com/in/imenlakrib",
+  };
+
   return (
     <Box sx={{ textAlign: "center", color: "secondary.light" }}>
       <Typography
@@ -78,8 +85,7 @@ const Contact = () => {
               variant="h6"
               sx={{ color: "secondary.contrastText", fontWeight: 400 }}
             >
-              Photo booth tattooed prism, portland taiyaki hoodie neutra
-              typewriter
+              Algeria, algiers
             </Typography>
           </Box>
           <Box sx={{ marginBottom: "20px" }}>
@@ -93,7 +99,7 @@ const Contact = () => {
               variant="h6"
               sx={{ color: "secondary.contrastText", fontWeight: 400 }}
             >
-              nc.example@example.com
+              lak12imen@gmail.com
             </Typography>
           </Box>
 
@@ -108,7 +114,7 @@ const Contact = () => {
               variant="h6"
               sx={{ color: "secondary.contrastText", fontWeight: 400 }}
             >
-              000-123-456-7890
+              000-000-000-0000
             </Typography>
           </Box>
 
@@ -120,18 +126,33 @@ const Contact = () => {
               🌏 SOCIALS
             </Typography>
             <Flex justifyContent="space-between">
-              <Avatar sx={{ bgcolor: "#1877f2", width: 34, height: 34 }}>
-                <FacebookIcon />
-              </Avatar>
-              <Avatar sx={{ bgcolor: "#E1306C", width: 34, height: 34 }}>
-                <InstagramIcon />
-              </Avatar>
-              <Avatar sx={{ bgcolor: "#FF0000", width: 34, height: 34 }}>
-                <YouTubeIcon />
-              </Avatar>
-              <Avatar sx={{ bgcolor: "#0A66C2", width: 34, height: 34 }}>
-                <LinkedInIcon />
-              </Avatar>
+              <a
+                href={socialLinks.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Avatar sx={{ bgcolor: "#1877f2", width: 34, height: 34 }}>
+                  <FacebookIcon />
+                </Avatar>
+              </a>
+              <a
+                href={socialLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Avatar sx={{ bgcolor: "#E1306C", width: 34, height: 34 }}>
+                  <InstagramIcon />
+                </Avatar>
+              </a>
+              <a
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Avatar sx={{ bgcolor: "#0A66C2", width: 34, height: 34 }}>
+                  <LinkedInIcon />
+                </Avatar>
+              </a>
             </Flex>
           </Box>
         </Box>

@@ -12,6 +12,8 @@ const NewArrivalsSection = () => {
   // get all products:
   const products = useSelector(selectProducts).slice(0, 8);
 
+  console.log("produuuuuuuuuuuuuuuuuuuucts", products);
+
   
 
 

@@ -412,7 +412,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ open, setOpen }) => {
           <Box sx={{ padding: "0 20px", marginBottom: "10px" }}>
             <Flex justifyContent="space-between">
               <Button
-                disabled={isLoading}
+                disabled={cartItems.length <= 0 ? true: false}
                 onClick={ordernow}
                 fullWidth
                 size="large"
@@ -434,7 +434,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ open, setOpen }) => {
               </Button>
 
               <Button
-                disabled={isLoading}
+                disabled={cartItems.length <= 0 ? true: false}
                 color="error"
                 aria-label="add"
                 onClick={clearCart}

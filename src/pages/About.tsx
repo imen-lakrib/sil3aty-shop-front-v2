@@ -141,6 +141,7 @@ const About = () => {
               overflow: "hidden",
               backgroundColor: "#1f2937",
               padding: "20px",
+              margin:"10px"
             }}
           >
             <Typography variant="h3" sx={{ color: "secondary.light" }}>
@@ -161,6 +162,7 @@ const About = () => {
               overflow: "hidden",
               backgroundColor: "#1f2937",
               padding: "20px",
+              margin:"10px"
             }}
           >
             <Typography variant="h3" sx={{ color: "secondary.light" }}>
@@ -181,6 +183,7 @@ const About = () => {
               overflow: "hidden",
               backgroundColor: "#1f2937",
               padding: "20px",
+              margin:"10px"
             }}
           >
             <Typography variant="h3" sx={{ color: "secondary.light" }}>
